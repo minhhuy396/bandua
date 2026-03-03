@@ -1,0 +1,135 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
+/* ===== HIỆU ỨNG FADE IN ===== */
+.fade-in {
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* ===== HIỆU ỨNG TRƯỢT LÊN ===== */
+.slide-up {
+    animation: slideUp 1s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ===== MENU ===== */
+nav {
+    background: white;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+nav a {
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: bold;
+    color: black;
+    position: relative;
+    transition: 0.3s;
+}
+
+/* Hiệu ứng gạch chân chạy */
+nav a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left: 0;
+    bottom: -5px;
+    background-color: red;
+    transition: 0.3s;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+nav a:hover {
+    color: red;
+}
+
+/* ===== ẢNH ===== */
+img {
+    margin-top: 20px;
+    width: 600px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+img:hover {
+    transform: scale(1.05);
+}
+
+/* ===== NỘI DUNG ===== */
+.content {
+    margin-top: 40px;
+}
+/* ===== PRODUCT CARD ===== */
+.product-section {
+    margin-top: 50px;
+}
+
+.product-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    background: white;
+    width: 250px;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: 0.4s;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+}
+
+.product-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.price {
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.buy-btn {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background: green;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.buy-btn:hover {
+    background: darkgreen;
+}
