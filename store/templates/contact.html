@@ -1,52 +1,54 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <title>Liên hệ - Shop Dừa Đạn</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block content %}
 
-<header>
-    <nav>
-        <a href="/">Trang chủ</a>
-        <a href="/about/">Thông tin</a>
-        <a href="/contact/">Liên hệ</a>
-    </nav>
-</header>
+<style>
 
-<main class="content">
+.container{
+    max-width:800px;
+    margin:auto;
+    padding:40px 20px;
+}
 
-    <h1>Liên hệ với chúng tôi</h1>
+.contact-card{
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    text-align:center;
+}
 
-    <p><strong>Địa chỉ:</strong> Bến Tre, Việt Nam</p>
-    <p><strong>Email:</strong> shopduadan@gmail.com</p>
-    <p><strong>SĐT:</strong> 0123 456 789</p>
+.contact-card h1{
+    margin-bottom:20px;
+}
 
-    <hr>
+.contact-info{
+    font-size:18px;
+    line-height:1.8;
+}
 
-    <h2>Giờ làm việc</h2>
-    <p>Thứ 2 - Thứ 6: 8h00 - 17h00</p>
-    <p>Thứ 7: 8h00 - 12h00</p>
+</style>
 
-    <hr>
+<div class="container">
 
-    <h2>Gửi tin nhắn</h2>
+<div class="contact-card">
 
-    <form>
-        <input type="text" placeholder="Họ tên"><br><br>
-        <input type="email" placeholder="Email"><br><br>
-        <textarea placeholder="Nội dung"></textarea><br><br>
-        <button type="submit">Gửi</button>
-    </form>
+<h1>📞 Liên hệ</h1>
 
-</main>
+<div class="contact-info">
 
-<footer>
-    <p>© 2026 Shop Dừa Đạn - All rights reserved</p>
-</footer>
+<p>🏠 Địa chỉ: Bến Tre, Việt Nam</p>
 
-</body>
-</html>
+<p>📞 Điện thoại: 0123 456 789</p>
+
+<p>📧 Email: shopdua@gmail.com</p>
+
+<p>🚚 Giao hàng toàn quốc</p>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

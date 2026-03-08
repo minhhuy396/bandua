@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop Dừa Bến Tre</title>
+</head>
+
+<body>
+
+<header>
+    <a href="/">Trang chủ</a>
+    <a href="/about/">Thông tin</a>
+    <a href="/contact/">Liên hệ</a>
+</header>
+
+{% block content %}
+{% endblock %}
+
+<footer>
+© 2026 Shop Dừa Bến Tre
+</footer>
+
+</body>
+<header>
+    <a href="/">Trang chủ</a>
+    <a href="/about/">Thông tin</a>
+
+    {% if user.is_authenticated %}
+        Xin chào {{ user.username }}
+        <a href="{% url 'logout' %}">Đăng xuất</a>
+    {% else %}
+        <a href="{% url 'login' %}">Đăng nhập</a>
+        <a href="{% url 'register' %}">Đăng ký</a>
+    {% endif %}
+</header>

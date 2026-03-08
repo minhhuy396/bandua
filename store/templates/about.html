@@ -1,48 +1,84 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <title>Thông tin - Shop Dừa Đạn</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block content %}
 
-<header>
-    <nav>
-        <a href="/">Trang chủ</a>
-        <a href="/about/">Thông tin</a>
-        <a href="/contact/">Liên hệ</a>
-    </nav>
-</header>
+<style>
 
-<main class="content">
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:40px 20px;
+}
 
-    <h1>Về chúng tôi</h1>
+.title{
+    text-align:center;
+    font-size:40px;
+    margin-bottom:20px;
+}
 
-    <p>
-        Shop Dừa Đạn chuyên cung cấp dừa tươi Bến Tre chất lượng cao,
-        đảm bảo ngọt tự nhiên và giao hàng nhanh chóng.
-    </p>
+.intro{
+    text-align:center;
+    font-size:18px;
+    margin-bottom:40px;
+}
 
-    <hr>
+.section{
+    background:white;
+    padding:25px;
+    margin-bottom:25px;
+    border-radius:10px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
 
-    <h2>Sứ mệnh</h2>
-    <p>Mang dừa sạch từ vườn đến tay khách hàng.</p>
+.section h2{
+    text-align:center;
+    margin-bottom:15px;
+}
 
-    <h2>Giá trị cốt lõi</h2>
-    <ul>
-        <li>✔ Chất lượng hàng đầu</li>
-        <li>✔ Giá cả hợp lý</li>
-        <li>✔ Phục vụ tận tâm</li>
-    </ul>
+.values{
+    list-style:none;
+    text-align:center;
+    padding:0;
+}
 
-</main>
+.values li{
+    margin:8px 0;
+    font-size:18px;
+}
 
-<footer>
-    <p>© 2026 Shop Dừa Đạn - All rights reserved</p>
-</footer>
+</style>
 
-</body>
-</html>
+<div class="container">
+
+<h1 class="title">🥥 Về chúng tôi</h1>
+
+<p class="intro">
+Shop Dừa Đạn chuyên cung cấp dừa tươi Bến Tre chất lượng cao,
+đảm bảo ngọt tự nhiên và giao hàng nhanh chóng.
+</p>
+
+<div class="section">
+
+<h2>🎯 Sứ mệnh</h2>
+
+<p style="text-align:center;">
+Mang dừa sạch từ vườn đến tay khách hàng.
+</p>
+
+</div>
+
+<div class="section">
+
+<h2>⭐ Giá trị cốt lõi</h2>
+
+<ul class="values">
+<li>✔ Chất lượng hàng đầu</li>
+<li>✔ Giá cả hợp lý</li>
+<li>✔ Phục vụ tận tâm</li>
+</ul>
+
+</div>
+
+</div>
+
+{% endblock %}

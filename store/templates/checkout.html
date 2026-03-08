@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Thanh toán</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#f4f4f4;
+}
+
+.container{
+    max-width:900px;
+    margin:40px auto;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+h2{
+    margin-bottom:20px;
+}
+
+form{
+    display:grid;
+    gap:15px;
+}
+
+input,textarea{
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+
+button{
+    padding:12px;
+    background:#2e8b57;
+    color:white;
+    border:none;
+    border-radius:6px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#256f47;
+}
+
+.order{
+    margin-top:30px;
+    padding-top:20px;
+    border-top:1px solid #ddd;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>📦 Thanh toán đơn hàng</h2>
+
+<form method="POST">
+{% csrf_token %}
+
+<input type="text" name="name" placeholder="Họ và tên">
+
+<input type="text" name="phone" placeholder="Số điện thoại">
+
+<textarea name="address" placeholder="Địa chỉ"></textarea>
+
+<button type="submit">
+Đặt hàng
+</button>
+
+</form>
+
+<div class="order">
+
+<h3>Sản phẩm</h3>
+
+{% for item in cart.cartitem_set.all %}
+<p>
+{{ item.product.name }} -
+{{ item.quantity }} x
+{{ item.product.price }} đ
+</p>
+{% endfor %}
+
+</div>
+
+</div>
+
+</body>
+</html>
