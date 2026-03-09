@@ -1,38 +1,28 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="UTF-8">
-<title>Giỏ hàng</title>
+
+{% block content %}
 
 <style>
 
-body{
-    font-family: Arial;
-    background:#f4f4f4;
-    margin:0;
-}
-
-header{
-    background:#2e8b57;
-    padding:15px;
-    text-align:center;
-}
-
-header a{
-    color:white;
-    margin:0 15px;
-    text-decoration:none;
-    font-weight:bold;
-}
-
 .container{
     max-width:1000px;
-    margin:40px auto;
+    margin:auto;
+    padding:50px 20px;
+}
+
+.title{
+    text-align:center;
+    font-size:40px;
+    margin-bottom:30px;
+    color:#2e8b57;
+}
+
+.cart-card{
     background:white;
     padding:30px;
-    border-radius:10px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.12);
 }
 
 table{
@@ -41,8 +31,8 @@ table{
 }
 
 th,td{
-    padding:12px;
-    border-bottom:1px solid #ddd;
+    padding:14px;
+    border-bottom:1px solid #eee;
     text-align:center;
 }
 
@@ -53,13 +43,28 @@ th{
 .product{
     display:flex;
     align-items:center;
+    justify-content:center;
     gap:10px;
 }
 
 .product img{
     width:60px;
-    border-radius:6px;
+    height:60px;
+    object-fit:cover;
+    border-radius:8px;
 }
+
+.remove{
+    color:red;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.remove:hover{
+    color:#b71c1c;
+}
+
+/* Tổng tiền */
 
 .total{
     text-align:right;
@@ -68,17 +73,18 @@ th{
     font-weight:bold;
 }
 
+/* nút thanh toán */
+
 .btn-checkout{
     margin-top:20px;
     display:block;
-    width:200px;
-    padding:12px;
+    margin-left:auto;
+    padding:12px 25px;
     background:#e53935;
     color:white;
     border:none;
     border-radius:6px;
     cursor:pointer;
-    font-size:16px;
 }
 
 .btn-checkout:hover{
@@ -86,18 +92,12 @@ th{
 }
 
 </style>
-</head>
-
-<body>
-
-<header>
-<a href="/">Trang chủ</a>
-<a href="/contact/">Liên hệ</a>
-</header>
 
 <div class="container">
 
-<h2>🛒 Giỏ hàng của bạn</h2>
+<h1 class="title">🛒 Giỏ hàng</h1>
+
+<div class="cart-card">
 
 <table>
 
@@ -105,23 +105,11 @@ th{
 <th>Sản phẩm</th>
 <th>Giá</th>
 <th>Số lượng</th>
-<th>Tổng</th>
+<th>Xóa</th>
 </tr>
 
 {% for item in items %}
-<tr>
-    <td>{{ item.product.name }}</td>
-    <td>{{ item.product.price }}</td>
-    <td>{{ item.quantity }}</td>
-    <td>{{ item.total_price }}</td>
 
-    <td>
-        <a href="{% url 'remove_from_cart' item.id %}" 
-           style="color:red; font-weight:bold;">
-           ❌ Xóa
-        </a>
-    </td>
-</tr>
 <tr>
 
 <td>
@@ -135,9 +123,14 @@ th{
 
 <td>{{ item.quantity }}</td>
 
-<td>{{ item.product.price|floatformat:0 }} x {{ item.quantity }}đ</td>
+<td>
+<a href="{% url 'remove_from_cart' item.id %}" class="remove">
+❌
+</a>
+</td>
 
 </tr>
+
 {% endfor %}
 
 </table>
@@ -154,5 +147,6 @@ Thanh toán
 
 </div>
 
-</body>
-</html>
+</div>
+
+{% endblock %}

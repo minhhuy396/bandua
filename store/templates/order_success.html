@@ -1,51 +1,85 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Đặt hàng thành công</title>
+{% extends "base.html" %}
+
+{% block content %}
 
 <style>
 
-body{
-font-family:Arial;
-background:#f4f4f4;
-text-align:center;
-padding-top:100px;
+.success-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:70vh;
 }
 
-.box{
-background:white;
-padding:40px;
-width:400px;
-margin:auto;
-border-radius:10px;
-box-shadow:0 5px 20px rgba(0,0,0,0.1);
+.success-box{
+    background:white;
+    padding:50px;
+    width:420px;
+    text-align:center;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    animation:fadeUp 0.8s ease;
 }
 
-a{
-display:inline-block;
-margin-top:20px;
-padding:10px 20px;
-background:#2e8b57;
-color:white;
-text-decoration:none;
-border-radius:6px;
+.success-box h2{
+    color:#2e8b57;
+    margin-bottom:15px;
+}
+
+.success-box p{
+    font-size:17px;
+    color:#555;
+}
+
+/* button */
+
+.success-box a{
+    display:inline-block;
+    margin-top:25px;
+    padding:12px 25px;
+    background:#2e8b57;
+    color:white;
+    text-decoration:none;
+    border-radius:6px;
+    transition:0.3s;
+}
+
+.success-box a:hover{
+    background:#256d46;
+    transform:scale(1.05);
+}
+
+/* animation */
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
 </style>
 
-</head>
+<div class="success-container">
 
-<body>
-
-<div class="box">
+<div class="success-box">
 
 <h2>🎉 Đặt hàng thành công</h2>
 
-<p>Cảm ơn bạn đã mua hàng.</p>
+<p>Cảm ơn bạn đã mua hàng tại <b>Shop Dừa Bến Tre</b>.</p>
 
-<a href="/">Quay lại trang chủ</a>
+<p>Chúng tôi sẽ sớm liên hệ để xác nhận đơn hàng.</p>
+
+<a href="/">
+🏠 Quay lại trang chủ
+</a>
 
 </div>
 
-</body>
-</html>
+</div>
+
+{% endblock %}

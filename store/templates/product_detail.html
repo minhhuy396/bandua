@@ -1,151 +1,148 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ product.name }} - Shop Dừa</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background: #f3f3f3;
-        }
+{% block content %}
 
-        header {
-            background: #2e8b57;
-            padding: 15px;
-            text-align: center;
-        }
+<style>
 
-        header a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-        }
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:50px 20px;
+}
 
-        .container {
-            max-width: 1100px;
-            margin: 40px auto;
-            background: white;
-            border-radius: 10px;
-            padding: 40px;
-            display: flex;
-            gap: 50px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
+/* Card sản phẩm */
 
-        .left img {
-            width: 420px;
-            border-radius: 12px;
-        }
+.product-card{
+    background:white;
+    border-radius:15px;
+    padding:40px;
+    display:flex;
+    gap:50px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.12);
+    animation:fadeUp 1s ease;
+}
 
-        .right {
-            flex: 1;
-        }
+/* Ảnh */
 
-        .price {
-            font-size: 30px;
-            color: #e53935;
-            font-weight: bold;
-            margin: 15px 0;
-        }
+.left img{
+    width:420px;
+    border-radius:12px;
+    transition:0.4s;
+}
 
-        .quantity {
-            margin: 20px 0;
-        }
+.left img:hover{
+    transform:scale(1.05);
+}
 
-        .quantity input {
-            width: 60px;
-            padding: 5px;
-            font-size: 16px;
-            text-align: center;
-        }
+/* Bên phải */
 
-        .buttons {
-            margin-top: 25px;
-        }
+.right{
+    flex:1;
+}
 
-        .btn-cart {
-            background: #ff9800;
-            border: none;
-            padding: 12px 25px;
-            font-size: 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            color: white;
-            margin-right: 10px;
-            transition: 0.3s;
-        }
+.right h1{
+    font-size:34px;
+    margin-bottom:10px;
+}
 
-        .btn-cart:hover {
-            background: #e68900;
-        }
+/* Giá */
 
-        .btn-buy {
-            background: #e53935;
-            border: none;
-            padding: 12px 25px;
-            font-size: 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            color: white;
-            transition: 0.3s;
-        }
+.price{
+    font-size:30px;
+    color:#e53935;
+    font-weight:bold;
+    margin:15px 0;
+}
 
-        .btn-buy:hover {
-            background: #c62828;
-        }
+/* Số lượng */
 
-        .description {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
-        }
+.quantity{
+    margin:20px 0;
+}
 
-        footer {
-            margin-top: 50px;
-            background: #2e8b57;
-            color: white;
-            text-align: center;
-            padding: 15px;
-        }
+.quantity input{
+    width:70px;
+    padding:6px;
+    font-size:16px;
+    text-align:center;
+    border-radius:5px;
+    border:1px solid #ccc;
+}
 
-        .back-link {
-            display: inline-block;
-            margin-top: 15px;
-            text-decoration: none;
-            color: #2e8b57;
-            font-weight: bold;
-        }
-    </style>
-</head>
+/* Nút */
 
-<body>
+.btn-cart{
+    background:#ff9800;
+    border:none;
+    padding:12px 25px;
+    font-size:16px;
+    border-radius:6px;
+    cursor:pointer;
+    color:white;
+    transition:0.3s;
+}
 
-<header>
-    <a href="/">Trang chủ</a>
-    <a href="/about/">Thông tin</a>
-    <a href="/contact/">Liên hệ</a>
-</a>
-  
-</header>
+.btn-cart:hover{
+    background:#e68900;
+    transform:scale(1.05);
+}
+
+/* Mô tả */
+
+.description{
+    margin-top:30px;
+    padding-top:20px;
+    border-top:1px solid #eee;
+}
+
+/* Quay lại */
+
+.back-link{
+    display:inline-block;
+    margin-top:20px;
+    text-decoration:none;
+    color:#2e8b57;
+    font-weight:bold;
+}
+
+.back-link:hover{
+    text-decoration:underline;
+}
+
+/* Animation */
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+</style>
+
 
 <div class="container">
 
-    <div class="left">
-        <img src="{{ product.image.url }}" alt="{{ product.name }}">
-    </div>
+<div class="product-card">
 
-    <div class="right">
-        <h1>{{ product.name }}</h1>
+<div class="left">
+<img src="{{ product.image.url }}" alt="{{ product.name }}">
+</div>
 
-        <div class="price">
-            {{ product.price }} đ
-        </div>
+<div class="right">
 
-        <form action="{% url 'add_to_cart' product.id %}" method="POST">
+<h1>{{ product.name }}</h1>
+
+<div class="price">
+{{ product.price }} đ
+</div>
+
+<form action="{% url 'add_to_cart' product.id %}" method="POST">
 {% csrf_token %}
 
 <div class="quantity">
@@ -153,33 +150,25 @@
 <input type="number" name="quantity" value="1" min="1">
 </div>
 
-<div class="buttons">
 <button type="submit" class="btn-cart">
-🛒 Thêm vào giỏ
+🛒 Thêm vào giỏ hàng
 </button>
-
-<button type="submit" formaction="/checkout/" class="btn-buy">
-⚡ Mua ngay
-</button>
-</div>
 
 </form>
 
-       
+<div class="description">
+<h3>Mô tả sản phẩm</h3>
+<p>{{ product.description }}</p>
+</div>
 
-        <div class="description">
-            <h3>Mô tả sản phẩm</h3>
-            <p>{{ product.description }}</p>
-        </div>
-
-        <a class="back-link" href="/">⬅ Quay lại</a>
-    </div>
+<a class="back-link" href="/">
+⬅ Quay lại
+</a>
 
 </div>
 
-<footer>
-    © 2026 Shop Dừa Bến Tre
-</footer>
+</div>
 
-</body>
-</html>
+</div>
+
+{% endblock %}

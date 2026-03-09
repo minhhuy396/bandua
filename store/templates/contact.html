@@ -5,26 +5,66 @@
 <style>
 
 .container{
-    max-width:800px;
+    max-width:900px;
     margin:auto;
-    padding:40px 20px;
+    padding:50px 20px;
 }
 
+/* Card liên hệ */
 .contact-card{
     background:white;
-    padding:30px;
-    border-radius:10px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    padding:40px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
     text-align:center;
+    animation: fadeUp 1s ease;
+    transition:0.3s;
 }
 
+.contact-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 15px 35px rgba(0,0,0,0.2);
+}
+
+/* Tiêu đề */
 .contact-card h1{
-    margin-bottom:20px;
+    margin-bottom:25px;
+    font-size:36px;
+    color:#2e8b57;
 }
 
+/* Thông tin */
 .contact-info{
     font-size:18px;
-    line-height:1.8;
+    line-height:2;
+}
+
+/* từng dòng */
+.contact-item{
+    background:#f9f9f9;
+    margin:10px 0;
+    padding:12px;
+    border-radius:8px;
+    transition:0.3s;
+}
+
+/* hover */
+.contact-item:hover{
+    background:#e8f5e9;
+    transform:scale(1.03);
+}
+
+/* Animation */
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
 </style>
@@ -33,17 +73,25 @@
 
 <div class="contact-card">
 
-<h1>📞 Liên hệ</h1>
+<h1>📞 Liên hệ Shop Dừa</h1>
 
 <div class="contact-info">
 
-<p>🏠 Địa chỉ: Bến Tre, Việt Nam</p>
+<div class="contact-item">
+🏠 <b>Địa chỉ:</b> Bến Tre, Việt Nam
+</div>
 
-<p>📞 Điện thoại: 0123 456 789</p>
+<div class="contact-item">
+📞 <b>Điện thoại:</b> 0123 456 789
+</div>
 
-<p>📧 Email: shopdua@gmail.com</p>
+<div class="contact-item">
+📧 <b>Email:</b> shopdua@gmail.com
+</div>
 
-<p>🚚 Giao hàng toàn quốc</p>
+<div class="contact-item">
+🚚 <b>Dịch vụ:</b> Giao hàng toàn quốc
+</div>
 
 </div>
 
