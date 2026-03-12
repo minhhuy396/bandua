@@ -2,17 +2,25 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
+from django.conf import settings
 
-from .models import Product, Cart, CartItem,OrderItem, Order
+from .models import Product, Cart, CartItem, OrderItem, Order, Category
 
 
 # =========================
 # Trang chủ
 # =========================
 def home(request):
-    products = Product.objects.all()
-    return render(request, 'home.html', {'products': products})
 
+    products = Product.objects.all()
+
+    categories = Category.objects.filter(parent=None)
+
+    return render(request,'home.html',{
+        'products':products,
+        'categories':categories
+    })
 
 # =========================
 # Trang thông tin
@@ -128,25 +136,7 @@ def cart_view(request):
 
 
 # =========================
-# Trang thanh toán
-# =========================
-@login_required
-def checkout(request):
-
-    cart, created = Cart.objects.get_or_create(user=request.user)
-
-    items = CartItem.objects.filter(cart=cart)
-
-    total = 0
-    for item in items:
-        total += item.product.price * item.quantity
-
-    return render(request, 'checkout.html', {
-        'items': items,
-        'total': total
-    })
-# =========================
-# Lưu đơn hàng → Trang xác nhận đặt hàng
+# Checkout + tạo đơn hàng + gửi email
 # =========================
 @login_required
 def checkout(request):
@@ -172,6 +162,16 @@ def checkout(request):
             total=total
         )
 
+        message = f"""
+📦 Có đơn hàng mới từ website
+
+Tên khách: {name}
+SĐT: {phone}
+Địa chỉ: {address}
+
+Sản phẩm:
+"""
+
         for item in items:
             OrderItem.objects.create(
                 order=order,
@@ -179,6 +179,19 @@ def checkout(request):
                 quantity=item.quantity,
                 price=item.product.price
             )
+
+            message += f"- {item.product.name} x {item.quantity}\n"
+
+        message += f"\n💰 Tổng tiền: {total} đ"
+
+        # gửi email
+        send_mail(
+            "📦 Đơn hàng mới",
+            message,
+            settings.EMAIL_HOST_USER,
+            ["nmhuy396@gmail.com"],
+            fail_silently=False,
+        )
 
         items.delete()
 
@@ -188,12 +201,35 @@ def checkout(request):
         'items': items,
         'total': total
     })
+
+
+# =========================
+# Trang đặt hàng thành công
+# =========================
 def order_success(request):
     return render(request, 'order_success.html')
+
+
 # =========================
-#Xóa giỏ hàng
+# Xóa sản phẩm khỏi giỏ
 # =========================
 def remove_from_cart(request, item_id):
     item = get_object_or_404(CartItem, id=item_id)
     item.delete()
     return redirect('cart')
+# =========================
+# Sản phẩm theo danh mục
+# =========================
+def category_products(request, category_id):
+
+    category = get_object_or_404(Category, id=category_id)
+
+    products = Product.objects.filter(category=category)
+
+    categories = Category.objects.all()
+
+    return render(request, 'home.html', {
+        'categories': categories,
+        'products': products,
+        'selected_category': category
+    })

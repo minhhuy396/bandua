@@ -4,99 +4,142 @@
 
 <style>
 
-.container{
-    max-width:1000px;
-    margin:auto;
-    padding:50px 20px;
+.about-container{
+max-width:1000px;
+margin:auto;
+padding:40px 20px;
 }
 
-/* Tiêu đề */
+/* breadcrumb */
+
+.breadcrumb{
+margin-bottom:20px;
+font-size:14px;
+}
+
+.breadcrumb a{
+text-decoration:none;
+color:#2e8b57;
+}
+
+.breadcrumb a:hover{
+text-decoration:underline;
+}
+
+/* tiêu đề */
+
 .title{
-    text-align:center;
-    font-size:42px;
-    margin-bottom:20px;
-    color:#2e8b57;
-    animation: fadeDown 1s ease;
+text-align:center;
+font-size:40px;
+margin-bottom:20px;
+color:#2e8b57;
+animation: fadeDown 1s ease;
 }
 
-/* Giới thiệu */
+/* mô tả */
+
 .intro{
-    text-align:center;
-    font-size:18px;
-    margin-bottom:40px;
-    color:#555;
+text-align:center;
+font-size:18px;
+margin-bottom:40px;
+color:#555;
 }
 
-/* Section */
+/* section */
+
 .section{
-    background:white;
-    padding:30px;
-    margin-bottom:30px;
-    border-radius:15px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.12);
-    transition:0.3s;
-    animation: fadeUp 1s ease;
+background:white;
+padding:30px;
+margin-bottom:30px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.12);
+transition:0.3s;
+animation: fadeUp 1s ease;
 }
 
 .section:hover{
-    transform:translateY(-6px);
-    box-shadow:0 15px 35px rgba(0,0,0,0.18);
+transform:translateY(-6px);
+box-shadow:0 15px 35px rgba(0,0,0,0.18);
 }
 
 .section h2{
-    text-align:center;
-    margin-bottom:15px;
-    color:#ff9800;
+text-align:center;
+margin-bottom:15px;
+color:#ff9800;
 }
 
-/* Danh sách giá trị */
+/* values */
+
 .values{
-    list-style:none;
-    text-align:center;
-    padding:0;
+list-style:none;
+text-align:center;
+padding:0;
 }
 
 .values li{
-    margin:10px 0;
-    font-size:18px;
-    background:#f9f9f9;
-    padding:10px;
-    border-radius:8px;
-    transition:0.3s;
+margin:10px 0;
+font-size:18px;
+background:#f9f9f9;
+padding:10px;
+border-radius:8px;
+transition:0.3s;
 }
 
 .values li:hover{
-    background:#e8f5e9;
-    transform:scale(1.03);
+background:#e8f5e9;
+transform:scale(1.03);
 }
 
-/* Animation */
+/* button */
+
+.home-btn{
+display:block;
+width:200px;
+margin:30px auto;
+text-align:center;
+padding:12px;
+background:#2e8b57;
+color:white;
+border-radius:8px;
+text-decoration:none;
+transition:0.3s;
+}
+
+.home-btn:hover{
+background:#1f6f45;
+}
+
+/* animation */
 
 @keyframes fadeUp{
-    from{
-        opacity:0;
-        transform:translateY(30px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
 @keyframes fadeDown{
-    from{
-        opacity:0;
-        transform:translateY(-20px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+from{
+opacity:0;
+transform:translateY(-20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
 </style>
 
-<div class="container">
+<div class="about-container">
+
+<div class="breadcrumb">
+<a href="/">Trang chủ</a> / Giới thiệu
+</div>
 
 <h1 class="title">🥥 Về chúng tôi</h1>
 
@@ -128,6 +171,8 @@ Mang dừa sạch từ vườn Bến Tre đến tay khách hàng trên toàn qu�
 </ul>
 
 </div>
+
+<a class="home-btn" href="/">← Quay về trang chủ</a>
 
 </div>
 
